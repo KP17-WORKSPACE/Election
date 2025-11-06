@@ -451,19 +451,18 @@
 
         @media (min-width: 769px) {
             .search-row {
-                grid-template-columns: 1fr;
+                grid-template-columns: 2fr 1fr 1fr 1fr auto;
                 gap: 0.8rem;
+                align-items: end;
             }
 
             .filter-row {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.8rem;
-                margin-top: 0.8rem;
+                display: contents;
             }
 
             .clear-btn {
-                width: 100%;
-                margin-top: 0.8rem;
+                width: auto;
+                margin-top: 0;
             }
 
             .voter-details {
@@ -660,14 +659,17 @@
         // Sample voter data - replace with actual data
         const votersData = [
             {
-                name: "राजेश कुमार शर्मा",
-                fatherName: "श्री रामलाल शर्मा", 
-                houseNumber: "A-101",
+                name: "Mule Vyankatrao Ganpatrao",
+                nameEnglish: "Mule Vyankatrao Ganpatrao",
+                fatherName: "Mule Ganpatrao", 
+                fatherNameEnglish: "Mule Ganpatrao",
+                houseNumber: "167",
                 gender: "Male",
-                age: 34,
-                voterIdNo: "ABC1234567",
-                otherNumber: "9876543210",
-                colonyName: "Rajiv Gandhi Colony"
+                age: 61,
+                voterIdNo: "SWH8119026",
+                otherNumber: "97/191/250",
+                colonyName: "Mule Galli Navin Vasahat Purna",
+                colonyNameEnglish: "Mule Galli Navin Vasahat Purna"
             },
             
         ];
@@ -688,7 +690,10 @@
         // Populate colony filter dropdown
         function populateColonyFilter() {
             const colonyFilter = document.getElementById('colonyFilter');
-            const colonies = [...new Set(votersData.map(voter => voter.colonyName))];
+            const colonies = [...new Set([
+                ...votersData.map(voter => voter.colonyName),
+                ...votersData.map(voter => voter.colonyNameEnglish).filter(name => name)
+            ])];
             
             colonies.forEach(colony => {
                 const option = document.createElement('option');
@@ -790,22 +795,26 @@
             const maxAge = parseInt(document.getElementById('maxAge').value) || 150;
 
             filteredVoters = votersData.filter(voter => {
-                // Direct search in all fields - works with any language
+                // Direct search in all fields - works with any language including English fields
                 let matchesSearch = true;
                 
                 if (searchTerm) {
                     matchesSearch = 
                         voter.name.toLowerCase().includes(searchTerm) ||
+                        (voter.nameEnglish && voter.nameEnglish.toLowerCase().includes(searchTerm)) ||
                         voter.fatherName.toLowerCase().includes(searchTerm) ||
+                        (voter.fatherNameEnglish && voter.fatherNameEnglish.toLowerCase().includes(searchTerm)) ||
                         voter.voterIdNo.toLowerCase().includes(searchTerm) ||
                         voter.houseNumber.toLowerCase().includes(searchTerm) ||
                         voter.otherNumber.toLowerCase().includes(searchTerm) ||
                         voter.colonyName.toLowerCase().includes(searchTerm) ||
+                        (voter.colonyNameEnglish && voter.colonyNameEnglish.toLowerCase().includes(searchTerm)) ||
                         voter.gender.toLowerCase().includes(searchTerm);
                 }
                 
                 const matchesGender = !genderFilter || voter.gender === genderFilter;
-                const matchesColony = !colonyFilter || voter.colonyName === colonyFilter;
+                const matchesColony = !colonyFilter || voter.colonyName === colonyFilter || 
+                                    (voter.colonyNameEnglish && voter.colonyNameEnglish === colonyFilter);
                 const matchesAge = voter.age >= minAge && voter.age <= maxAge;
 
                 return matchesSearch && matchesGender && matchesColony && matchesAge;
