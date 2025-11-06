@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Election Commission - Voter Information System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --gov-primary: #005b96;
+            --gov-secondary: #ff9933;
+            --gov-green: #138808;
+            --gov-light-blue: #f0f8ff;
+            --gov-gray: #6c757d;
+            --gov-bg: #ffffff;
+            --border-color: #ddd;
+            --text-primary: #333;
+            --text-secondary: #666;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+
+        /* Government Header Section */
+        .gov-header {
+            background: linear-gradient(135deg, var(--gov-primary) 0%, #004080 100%);
+            color: white;
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--gov-secondary);
+        }
+
+        .politician-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .politician-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--gov-secondary);
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gov-primary);
+            background-image: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .politician-info h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .politician-info p {
+            margin: 0.2rem 0;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .voter-symbol {
+            width: 60px;
+            height: 60px;
+            background: var(--gov-secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .system-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 1rem;
+            overflow: hidden;
+        }
+
+        .stats-header {
+            background: var(--gov-light-blue);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            font-weight: 600;
+            color: var(--gov-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border-color);
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gov-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Search and Filter Section */
+        .search-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 1rem;
+            padding: 1rem;
+        }
+
+        .search-header {
+            font-weight: 600;
+            color: var(--gov-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gov-light-blue);
+        }
+
+        .search-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--gov-primary);
+            box-shadow: 0 0 0 2px rgba(0, 91, 150, 0.1);
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .age-inputs {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 0.3rem;
+            align-items: center;
+        }
+
+        .age-inputs input {
+            padding: 0.4rem;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .clear-btn {
+            background: var(--gov-secondary);
+            border: none;
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 0.8rem;
+            width: 100%;
+        }
+
+        .clear-btn:hover {
+            background: #e6851a;
+        }
+
+        /* Voter List Section */
+        .voter-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 1rem;
+            overflow: hidden;
+        }
+
+        .voter-header {
+            background: var(--gov-primary);
+            color: white;
+            padding: 0.8rem 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .voter-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .voter-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .voter-item:last-child {
+            border-bottom: none;
+        }
+
+        .voter-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--gov-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .voter-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.3rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-icon {
+            width: 16px;
+            color: var(--gov-primary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-male { background-color: #e3f2fd; color: #1976d2; }
+        .badge-female { background-color: #fce4ec; color: #c2185b; }
+        .badge-age { background-color: #f3e5f5; color: #7b1fa2; }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-secondary);
+        }
+
+        .results-info {
+            padding: 0.8rem 1rem;
+            background: var(--gov-light-blue);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .politician-section {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .politician-info h1 {
+                font-size: 1.5rem;
+            }
+
+            .politician-image {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .voter-symbol {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .system-title {
+                font-size: 1.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 1.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .search-row {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+
+            .filter-row {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+
+            .voter-details {
+                grid-template-columns: 1fr;
+                gap: 0.4rem;
+            }
+
+            .detail-row {
+                font-size: 0.8rem;
+            }
+
+            body {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .search-row {
+                grid-template-columns: 2fr 1fr 1fr 1fr auto;
+                align-items: end;
+            }
+
+            .clear-btn {
+                width: auto;
+                margin-top: 0;
+            }
+
+            .voter-details {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .voter-details {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin: 1rem;
+        }
+
+        .pagination {
+            margin: 0;
+        }
+
+        .page-link {
+            color: var(--gov-primary);
+            border-color: var(--border-color);
+        }
+
+        .page-item.active .page-link {
+            background-color: var(--gov-primary);
+            border-color: var(--gov-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gov-primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            margin: 0.2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Government Header Section -->
+    <div class="gov-header">
+        <div class="container">
+            <!-- Politician Section -->
+            <div class="politician-section">
+                <div class="politician-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="politician-info">
+                    <h1>श्री राजेश कुमार शर्मा</h1>
+                    <p>विधायक, पूर्व वार्ड २</p>
+                    <p>भारतीय जनता पार्टी</p>
+                </div>
+                <div class="voter-symbol">
+                    <i class="fas fa-lotus"></i>
+                </div>
+            </div>
+            
+            <div class="system-title">
+                मतदार माहिती व्यवस्थापन प्रणाली
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <div class="stats-header">
+                <i class="fas fa-chart-bar"></i> मतदार सांख्यिकी
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalVoters">0</div>
+                    <div class="stat-label">एकूण मतदार</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalMales">0</div>
+                    <div class="stat-label">पुरुष</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalFemales">0</div>
+                    <div class="stat-label">महिला</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="averageAge">0</div>
+                    <div class="stat-label">सरासरी वय</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="search-section">
+            <div class="search-header">
+                <i class="fas fa-search"></i> मतदार शोध आणि फिल्टर
+            </div>
+            
+            <div class="search-row">
+                <div>
+                    <input type="text" class="form-control" id="searchInput" 
+                           placeholder="नाव, मतदार क्रमांक किंवा पत्ता शोधा...">
+                </div>
+                
+                <div class="filter-row">
+                    <div>
+                        <select class="form-select" id="genderFilter">
+                            <option value="">सर्व लिंग</option>
+                            <option value="Male">पुरुष</option>
+                            <option value="Female">महिला</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <select class="form-select" id="colonyFilter">
+                            <option value="">सर्व कॉलनी</option>
+                        </select>
+                    </div>
+                    
+                    <div class="age-inputs">
+                        <input type="number" class="form-control" id="minAge" placeholder="कमी" min="18" max="120">
+                        <span>ते</span>
+                        <input type="number" class="form-control" id="maxAge" placeholder="जास्त" min="18" max="120">
+                    </div>
+                </div>
+                
+                <button class="clear-btn" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> साफ करा
+                </button>
+            </div>
+        </div>
+
+        <!-- Voter List Section -->
+        <div class="voter-section">
+            <div class="voter-header">
+                <i class="fas fa-list"></i>
+                <span>मतदार यादी</span>
+            </div>
+            
+            <div class="results-info" id="filterResults">
+                सर्व मतदार दाखवत आहे
+            </div>
+            
+            <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">मतदार डेटा लोड करत आहे...</p>
+            </div>
+            
+            <div id="voterList">
+                <!-- Voter items will be populated here -->
+            </div>
+            
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h6>कोणतेही मतदार सापडले नाहीत</h6>
+                <p class="small">कृपया आपले शोध निकष समायोजित करा</p>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container" id="paginationContainer">
+            <!-- Pagination will be populated here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 निवडणूक आयोग, महाराष्ट्र. सर्व हक्क राखीव.</p>
+            <p><small>मतदार माहिती व्यवस्थापन प्रणाली आवृत्ती 1.0</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
+    <script>
+        // Sample voter data - replace with actual data
+        const votersData = [
+            {
+                name: "राजेश कुमार शर्मा",
+                fatherName: "श्री रामलाल शर्मा", 
+                houseNumber: "A-101",
+                gender: "Male",
+                age: 34,
+                voterIdNo: "ABC1234567",
+                otherNumber: "9876543210",
+                colonyName: "Rajiv Gandhi Colony"
+            },
+            {
+                name: "सुनीता देवी",
+                fatherName: "श्री मोहनलाल",
+                houseNumber: "B-205",
+                gender: "Female", 
+                age: 28,
+                voterIdNo: "DEF2345678",
+                otherNumber: "9876543211",
+                colonyName: "Gandhi Nagar"
+            },
+            {
+                name: "अमित पटेल",
+                fatherName: "श्री विनोद पटेल",
+                houseNumber: "C-45",
+                gender: "Male",
+                age: 45,
+                voterIdNo: "GHI3456789",
+                otherNumber: "9876543212", 
+                colonyName: "Nehru Colony"
+            },
+            {
+                name: "प्रिया शर्मा",
+                fatherName: "श्री संजय शर्मा",
+                houseNumber: "D-78",
+                gender: "Female",
+                age: 23,
+                voterIdNo: "JKL4567890",
+                otherNumber: "9876543213",
+                colonyName: "Rajiv Gandhi Colony"
+            },
+            {
+                name: "विकास यादव",
+                fatherName: "श्री रामकिशन यादव",
+                houseNumber: "E-12",
+                gender: "Male",
+                age: 67,
+                voterIdNo: "MNO5678901",
+                otherNumber: "9876543214",
+                colonyName: "Ambedkar Nagar"
+            },
+            {
+                name: "अनिता गुप्ता",
+                fatherName: "श्री अशोक गुप्ता",
+                houseNumber: "F-89",
+                gender: "Female",
+                age: 41,
+                voterIdNo: "PQR6789012",
+                otherNumber: "9876543215",
+                colonyName: "Gandhi Nagar"
+            },
+            {
+                name: "सुरेश चंद्र",
+                fatherName: "श्री देवीलाल",
+                houseNumber: "G-156",
+                gender: "Male",
+                age: 52,
+                voterIdNo: "STU7890123",
+                otherNumber: "9876543216",
+                colonyName: "Nehru Colony"
+            },
+            {
+                name: "मीना कुमारी",
+                fatherName: "श्री राजकुमार",
+                houseNumber: "H-234",
+                gender: "Female",
+                age: 38,
+                voterIdNo: "VWX8901234",
+                otherNumber: "9876543217",
+                colonyName: "Subhash Nagar"
+            },
+            {
+                name: "राहुल वर्मा",
+                fatherName: "श्री प्रकाश वर्मा",
+                houseNumber: "I-67",
+                gender: "Male",
+                age: 29,
+                voterIdNo: "YZA9012345",
+                otherNumber: "9876543218",
+                colonyName: "Ambedkar Nagar"
+            },
+            {
+                name: "रेखा सिंह",
+                fatherName: "श्री भरत सिंह",
+                houseNumber: "J-91",
+                gender: "Female",
+                age: 48,
+                voterIdNo: "BCD0123456",
+                otherNumber: "9876543219",
+                colonyName: "Subhash Nagar"
+            },
+            {
+                name: "महेश पाटील",
+                fatherName: "श्री गोविंद पाटील",
+                houseNumber: "K-55",
+                gender: "Male",
+                age: 42,
+                voterIdNo: "EFG1234567",
+                otherNumber: "9876543220",
+                colonyName: "शिवाजी नगर"
+            },
+            {
+                name: "गीता जोशी",
+                fatherName: "श्री रमेश जोशी",
+                houseNumber: "L-88",
+                gender: "Female",
+                age: 35,
+                voterIdNo: "HIJ2345678",
+                otherNumber: "9876543221",
+                colonyName: "विकास नगर"
+            },
+            {
+                name: "गीता जोशी",
+                fatherName: "श्री रमेश जोशी",
+                houseNumber: "L-88",
+                gender: "Female",
+                age: 35,
+                voterIdNo: "HIJ2345678",
+                otherNumber: "9876543221",
+                colonyName: "विकास नगर"
+            }
+        ];
+
+        let filteredVoters = [...votersData];
+        const itemsPerPage = 1000; // Show all data
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            console.log('Voters data:', votersData);
+            populateColonyFilter();
+            updateStatistics();
+            displayVoters();
+            setupEventListeners();
+        });
+
+        // Populate colony filter dropdown
+        function populateColonyFilter() {
+            const colonyFilter = document.getElementById('colonyFilter');
+            const colonies = [...new Set(votersData.map(voter => voter.colonyName))];
+            
+            colonies.forEach(colony => {
+                const option = document.createElement('option');
+                option.value = colony;
+                option.textContent = colony;
+                colonyFilter.appendChild(option);
+            });
+        }
+
+        // Update statistics
+        function updateStatistics() {
+            const totalVoters = filteredVoters.length;
+            const totalMales = filteredVoters.filter(voter => voter.gender === 'Male').length;
+            const totalFemales = filteredVoters.filter(voter => voter.gender === 'Female').length;
+            
+            const ages = filteredVoters.map(voter => voter.age);
+            const averageAge = ages.length > 0 ? Math.round(ages.reduce((a, b) => a + b, 0) / ages.length) : 0;
+
+            // Update DOM elements
+            document.getElementById('totalVoters').textContent = totalVoters;
+            document.getElementById('totalMales').textContent = totalMales;
+            document.getElementById('totalFemales').textContent = totalFemales;
+            document.getElementById('averageAge').textContent = averageAge;
+        }
+
+        // Display all voters (no pagination)
+        function displayVoters() {
+            const voterList = document.getElementById('voterList');
+            const noResults = document.getElementById('noResults');
+            const filterResults = document.getElementById('filterResults');
+            
+            if (filteredVoters.length === 0) {
+                voterList.innerHTML = '';
+                noResults.style.display = 'block';
+                filterResults.textContent = 'कोणतेही मतदार सापडले नाहीत';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            
+            // Update filter results text
+            filterResults.textContent = `एकूण ${filteredVoters.length} मतदार दाखवत आहे`;
+            
+            // Generate voter list HTML - show all voters
+            voterList.innerHTML = filteredVoters.map(voter => `
+                <div class="voter-item">
+                    <div class="voter-name">${voter.name}</div>
+                    <div class="voter-details">
+                        <div class="detail-row">
+                            <i class="fas fa-user-tie detail-icon"></i>
+                            <span>पिता: ${voter.fatherName}</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-home detail-icon"></i>
+                            <span>घर क्र.: ${voter.houseNumber}</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-venus-mars detail-icon"></i>
+                            <span class="badge badge-${voter.gender.toLowerCase()}">${voter.gender === 'Male' ? 'पुरुष' : 'महिला'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-birthday-cake detail-icon"></i>
+                            <span class="badge badge-age">${voter.age} वर्षे</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-id-card detail-icon"></i>
+                            <span>मतदार क्र.: ${voter.voterIdNo}</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-phone detail-icon"></i>
+                            <span>${voter.otherNumber}</span>
+                        </div>
+                        <div class="detail-row">
+                            <i class="fas fa-map-marker-alt detail-icon"></i>
+                            <span>${voter.colonyName}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate pagination controls
+        function generatePagination(totalPages) {
+            const paginationContainer = document.getElementById('paginationContainer');
+            
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '<nav><ul class="pagination">';
+            
+            // Previous button
+            paginationHTML += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>
+                </li>
+            `;
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+                    paginationHTML += `
+                        <li class="page-item ${i === currentPage ? 'active' : ''}">
+                            <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                        </li>
+                    `;
+                } else if (i === currentPage - 3 || i === currentPage + 3) {
+                    paginationHTML += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                }
+            }
+            
+            // Next button
+            paginationHTML += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>
+                </li>
+            `;
+            
+            paginationHTML += '</ul></nav>';
+            paginationContainer.innerHTML = paginationHTML;
+        }
+
+        // Change page
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredVoters.length / itemsPerPage);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                displayVoters();
+            }
+        }
+
+        // Get age class for styling
+        function getAgeClass(age) {
+            if (age >= 18 && age <= 35) return 'age-young';
+            if (age >= 36 && age <= 55) return 'age-middle';
+            return 'age-senior';
+        }
+
+        // Enhanced translation function with comprehensive mappings
+        function translateToEnglish(text) {
+            const translations = {
+                // Names
+                'राजेश कुमार शर्मा': 'Rajesh Kumar Sharma',
+                'सुनीता देवी': 'Sunita Devi',
+                'अमित पटेल': 'Amit Patel',
+                'प्रिया शर्मा': 'Priya Sharma',
+                'विकास यादव': 'Vikas Yadav',
+                'अनिता गुप्ता': 'Anita Gupta',
+                'सुरेश चंद्र': 'Suresh Chandra',
+                'मीना कुमारी': 'Meena Kumari',
+                'राहुल वर्मा': 'Rahul Verma',
+                'रेखा सिंह': 'Rekha Singh',
+                'महेश पाटील': 'Mahesh Patil',
+                'गीता जोशी': 'Geeta Joshi',
+                
+                // Father Names
+                'श्री रामलाल शर्मा': 'Shri Ramlal Sharma',
+                'श्री मोहनलाल': 'Shri Mohanlal',
+                'श्री विनोद पटेल': 'Shri Vinod Patel',
+                'श्री संजय शर्मा': 'Shri Sanjay Sharma',
+                'श्री रामकिशन यादव': 'Shri Ramkishan Yadav',
+                'श्री अशोक गुप्ता': 'Shri Ashok Gupta',
+                'श्री देवीलाल': 'Shri Devilal',
+                'श्री राजकुमार': 'Shri Rajkumar',
+                'श्री प्रकाश वर्मा': 'Shri Prakash Verma',
+                'श्री भरत सिंह': 'Shri Bharat Singh',
+                'श्री गोविंद पाटील': 'Shri Govind Patil',
+                'श्री रमेश जोशी': 'Shri Ramesh Joshi',
+                
+                // Colony names
+                'शिवाजी नगर': 'Shivaji Nagar',
+                'विकास नगर': 'Vikas Nagar',
+                
+                // Common words and partial matches
+                'राजेश': 'rajesh',
+                'कुमार': 'kumar',
+                'शर्मा': 'sharma',
+                'सुनीता': 'sunita',
+                'देवी': 'devi',
+                'अमित': 'amit',
+                'पटेल': 'patel',
+                'प्रिया': 'priya',
+                'विकास': 'vikas',
+                'यादव': 'yadav',
+                'अनिता': 'anita',
+                'गुप्ता': 'gupta',
+                'सुरेश': 'suresh',
+                'चंद्र': 'chandra',
+                'मीना': 'meena',
+                'कुमारी': 'kumari',
+                'राहुल': 'rahul',
+                'वर्मा': 'verma',
+                'रेखा': 'rekha',
+                'सिंह': 'singh',
+                'महेश': 'mahesh',
+                'पाटील': 'patil',
+                'गीता': 'geeta',
+                'जोशी': 'joshi',
+                'श्री': 'shri',
+                'रामलाल': 'ramlal',
+                'मोहनलाल': 'mohanlal',
+                'विनोद': 'vinod',
+                'संजय': 'sanjay',
+                'रामकिशन': 'ramkishan',
+                'अशोक': 'ashok',
+                'देवीलाल': 'devilal',
+                'राजकुमार': 'rajkumar',
+                'प्रकाश': 'prakash',
+                'भरत': 'bharat',
+                'गोविंद': 'govind',
+                'रमेश': 'ramesh',
+                'शिवाजी': 'shivaji',
+                'नगर': 'nagar',
+                
+                // Gender in Marathi
+                'पुरुष': 'male',
+                'महिला': 'female',
+                'स्त्री': 'female'
+            };
+            return translations[text] || text;
+        }
+
+        // Function to get all possible search terms for a text (original + translated + partial matches)
+        function getAllSearchTerms(text) {
+            if (!text) return [];
+            
+            const terms = [text.toLowerCase()];
+            const translated = translateToEnglish(text);
+            if (translated !== text) {
+                terms.push(translated.toLowerCase());
+            }
+            
+            // Add word-by-word translation for partial matches
+            const words = text.split(' ');
+            words.forEach(word => {
+                const translatedWord = translateToEnglish(word);
+                if (translatedWord !== word) {
+                    terms.push(translatedWord.toLowerCase());
+                }
+                terms.push(word.toLowerCase());
+            });
+            
+            return [...new Set(terms)]; // Remove duplicates
+        }
+
+        // Enhanced search function that works with both languages
+        function searchInText(searchTerm, text) {
+            if (!searchTerm || !text) return false;
+            
+            const searchLower = searchTerm.toLowerCase();
+            const allTerms = getAllSearchTerms(text);
+            
+            return allTerms.some(term => term.includes(searchLower));
+        }
+
+        // Simple direct search - no translation needed
+        function filterVoters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const genderFilter = document.getElementById('genderFilter').value;
+            const colonyFilter = document.getElementById('colonyFilter').value;
+            const minAge = parseInt(document.getElementById('minAge').value) || 0;
+            const maxAge = parseInt(document.getElementById('maxAge').value) || 150;
+
+            filteredVoters = votersData.filter(voter => {
+                // Direct search in all fields - works with any language
+                let matchesSearch = true;
+                
+                if (searchTerm) {
+                    matchesSearch = 
+                        voter.name.toLowerCase().includes(searchTerm) ||
+                        voter.fatherName.toLowerCase().includes(searchTerm) ||
+                        voter.voterIdNo.toLowerCase().includes(searchTerm) ||
+                        voter.houseNumber.toLowerCase().includes(searchTerm) ||
+                        voter.otherNumber.toLowerCase().includes(searchTerm) ||
+                        voter.colonyName.toLowerCase().includes(searchTerm) ||
+                        voter.gender.toLowerCase().includes(searchTerm);
+                }
+                
+                const matchesGender = !genderFilter || voter.gender === genderFilter;
+                const matchesColony = !colonyFilter || voter.colonyName === colonyFilter;
+                const matchesAge = voter.age >= minAge && voter.age <= maxAge;
+
+                return matchesSearch && matchesGender && matchesColony && matchesAge;
+            });
+
+            updateStatistics();
+            displayVoters();
+        }
+
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('genderFilter').value = '';
+            document.getElementById('colonyFilter').value = '';
+            document.getElementById('minAge').value = '';
+            document.getElementById('maxAge').value = '';
+            
+            filteredVoters = [...votersData];
+            updateStatistics();
+            displayVoters();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', filterVoters);
+            document.getElementById('genderFilter').addEventListener('change', filterVoters);
+            document.getElementById('colonyFilter').addEventListener('change', filterVoters);
+            document.getElementById('minAge').addEventListener('input', filterVoters);
+            document.getElementById('maxAge').addEventListener('input', filterVoters);
+        }
+    </script>
+</body>
+</html>
