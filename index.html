@@ -964,12 +964,12 @@
        
         .video-sound-toggle {
             position: absolute;
-            bottom: 15px;
-            right: 15px;
+            bottom: 10px;
+            right: 10px;
             background: rgba(0, 91, 150, 0.8);
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.9rem;
@@ -1784,13 +1784,13 @@
             filterResults.textContent = `एकूण ${filteredVoters.length} मतदार दाखवत आहे`;
 
             // Generate voter list HTML - show all voters
-            voterList.innerHTML = filteredVoters.map(voter => `
+            voterList.innerHTML = filteredVoters.map((voter, index) => `
                 <div class="voter-item">
-                    <div class="voter-name">${toTitleCase(voter.name)}</div>
+                    <div class="voter-name">${index + 1}.${toTitleCase(voter.name)}</div>
                     <div class="voter-details">
                         <div class="detail-row">
                             <i class="fas fa-male detail-icon"></i>
-                            <span>${toTitleCase(voter.fatherName)}</span>
+                            <span> ${toTitleCase(voter.fatherName)}</span>
                         </div>
                         <div class="detail-row">
                             <i class="fas fa-home detail-icon"></i>
