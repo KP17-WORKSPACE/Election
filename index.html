@@ -1,10 +1,61 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Election Commission - Voter Information System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <!-- Basic SEO Meta Tags -->
+    <title>श्री कैलास काचरुसिंह ठाकूर</title>
+    <meta name="description" content="श्री कैलास काचरुसिंह ठाकूर, मतदारांची सांख्यिकी आणि माहिती पहा।">
+    <meta name="keywords" content="कैलास काचरुसिंह ठाकूर">
+    <meta name="author" content="श्री कैलास काचरुसिंह ठाकूर">
+    <meta name="language" content="Marathi, English">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn, etc.) -->
+    <meta property="og:type" content="website">
+    
+    <meta property="og:title" content="श्री कैलास काचरुसिंह ठाकूर - मतदार माहिती व्यवस्थापन प्रणाली">
+    <meta property="og:description" content="श्री कैलास काचरुसिंह ठाकूर">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="श्री कैलास काचरुसिंह ठाकूर">
+    <meta property="og:site_name" content="मतदार माहिती व्यवस्थापन प्रणाली">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourwebsite.com">
+    <meta name="twitter:title" content="श्री कैलास काचरुसिंह ठाकूर - मतदार माहिती व्यवस्थापन प्रणाली">
+    <meta name="twitter:description" content="श्री कैलास काचरुसिंह ठाकूर">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:creator" content="@yourhandle">
+    
+    <!-- WhatsApp Meta Tags -->
+    <meta property="og:title" content="श्री कैलास काचरुसिंह ठाकूर - मतदार माहिती व्यवस्थापन">
+    <meta property="og:description" content="श्री कैलास काचरुसिंह ठाकूर - मतदार माहिती व्यवस्थापन">
+    <meta property="og:image" content="">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+    <meta name="theme-color" content="#005b96">
+    <meta name="color-scheme" content="light dark">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="apple-touch-icon" href="">
+    
+    <!-- LinkedIn Meta Tags -->
+    <meta property="article:author" content="श्री कैलास काचरुसिंह ठाकूर">
+    <meta property="article:published_time" content="2025-01-01">
+    <meta property="article:modified_time" content="2025-11-11">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -89,7 +140,7 @@
             font-size: 2rem;
             color: white;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .system-title {
@@ -103,7 +154,7 @@
         .stats-section {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin: 1rem;
             overflow: hidden;
         }
@@ -148,7 +199,7 @@
         .search-section {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin: 1rem;
             padding: 1rem;
         }
@@ -159,7 +210,8 @@
             gap: 0.8rem;
         }
 
-        .form-control, .form-select {
+        .form-control,
+        .form-select {
             border: 1px solid var(--border-color);
             border-radius: 4px;
             padding: 0.6rem 0.8rem;
@@ -167,7 +219,8 @@
             transition: border-color 0.3s ease;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus,
+        .form-select:focus {
             outline: none;
             border-color: var(--gov-primary);
             box-shadow: 0 0 0 2px rgba(0, 91, 150, 0.1);
@@ -177,8 +230,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 0.5rem;
-           
-            
+
+
         }
 
         .age-inputs {
@@ -214,7 +267,7 @@
         .voter-section {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin: 1rem;
             overflow: hidden;
         }
@@ -277,9 +330,20 @@
             font-weight: 500;
         }
 
-        .badge-male { background-color: #e3f2fd; color: #1976d2; }
-        .badge-female { background-color: #fce4ec; color: #c2185b; }
-        .badge-age { background-color: #f3e5f5; color: #7b1fa2; }
+        .badge-male {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-female {
+            background-color: #fce4ec;
+            color: #c2185b;
+        }
+
+        .badge-age {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+        }
 
         .no-results {
             text-align: center;
@@ -380,7 +444,7 @@
                 border-radius: 8px;
                 margin-bottom: 0.6rem;
                 background: white;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
                 border-left: 4px solid var(--gov-primary);
             }
 
@@ -444,7 +508,9 @@
                 padding: 0 0.3rem;
             }
 
-            .stats-section, .search-section, .voter-section {
+            .stats-section,
+            .search-section,
+            .voter-section {
                 margin: 0.5rem;
             }
         }
@@ -519,10 +585,9 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
-        
-        
     </style>
 </head>
+
 <body>
     <!-- Government Header Section -->
     <div class="gov-header">
@@ -530,10 +595,11 @@
             <!-- Politician Section -->
             <div class="politician-section">
                 <div class="politician-image">
-                    <img src="Kunal.jpeg" alt="श्री कुणाल यादव पंढरकर" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i>';">
+                    <img src="Kunal.jpeg" alt="श्री कैलास काचरुसिंह ठाकूर"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i>';">
                 </div>
                 <div class="politician-info">
-                    <h1>श्री कुणाल यादव पंढरकर</h1>
+                    <h1>श्री कैलास काचरुसिंह ठाकूर</h1>
                     <p>विधायक, पूर्व वार्ड २</p>
                     <p>भारतीय जनता पार्टी</p>
                 </div>
@@ -541,7 +607,7 @@
                     ❀
                 </div>
             </div>
-            
+
             <div class="system-title">
                 मतदार माहिती व्यवस्थापन प्रणाली
             </div>
@@ -578,10 +644,10 @@
         <div class="search-section">
             <div class="search-row">
                 <div>
-                    <input type="text" class="form-control" id="searchInput" 
-                           placeholder="🔍 मतदार शोध आणि फिल्टर - नाव, मतदार क्रमांक किंवा पत्ता शोधा...">
+                    <input type="text" class="form-control" id="searchInput"
+                        placeholder="🔍 मतदार शोध आणि फिल्टर - नाव, मतदार क्रमांक किंवा पत्ता शोधा...">
                 </div>
-                
+
                 <div class="filter-row">
                     <div>
                         <select class="form-select" id="genderFilter">
@@ -590,20 +656,20 @@
                             <option value="Female">महिला</option>
                         </select>
                     </div>
-                    
+
                     <div>
                         <select class="form-select" id="colonyFilter">
                             <option value="">सर्व कॉलनी</option>
                         </select>
                     </div>
-                    
+
                     <div class="age-inputs">
                         <input type="number" class="form-control" id="minAge" placeholder="वय" min="18" max="120">
                         <span>ते</span>
                         <input type="number" class="form-control" id="maxAge" placeholder="वय" min="18" max="120">
                     </div>
                 </div>
-                
+
                 <button class="clear-btn" onclick="clearFilters()">
                     <i class="fas fa-times"></i> Clear
                 </button>
@@ -616,22 +682,22 @@
                 <i class="fas fa-list"></i>
                 <span>मतदार यादी</span>
             </div>
-            
+
             <div class="results-info" id="filterResults">
                 सर्व मतदार दाखवत आहे
             </div>
-            
+
             <div class="loading-spinner" id="loadingSpinner" style="display: none;">
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
                 <p class="mt-2">मतदार डेटा लोड करत आहे...</p>
             </div>
-            
+
             <div id="voterList">
                 <!-- Voter items will be populated here -->
             </div>
-            
+
             <div class="no-results" id="noResults" style="display: none;">
                 <i class="fas fa-search fa-3x text-muted mb-3"></i>
                 <h6>कोणतेही मतदार सापडले नाहीत</h6>
@@ -653,32 +719,82 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
     <script>
         // Sample voter data - replace with actual data
         const votersData = [
             {
                 name: "Mule Vyankatrao Ganpatrao",
-                nameEnglish: "Mule Vyankatrao Ganpatrao",
-                fatherName: "Mule Ganpatrao", 
-                fatherNameEnglish: "Mule Ganpatrao",
+                fatherName: "Mule Ganpatrao",
                 houseNumber: "167",
                 gender: "Male",
                 age: 61,
                 voterIdNo: "SWH8119026",
                 otherNumber: "97/191/250",
                 colonyName: "Mule Galli Navin Vasahat Purna",
-                colonyNameEnglish: "Mule Galli Navin Vasahat Purna"
             },
-            
+            {
+                name: "Mule Nandabai Vyankatrao",
+                fatherName: "Mule Vyankatrao",
+                houseNumber: "167",
+                gender: "Male",
+                age: 54,
+                voterIdNo: "SWH8119034",
+                otherNumber: "97/191/251",
+                colonyName: "Mule Galli Navin Vasahat Purna",
+            },
+              {
+                name: "Nagthane Shivyogi",
+                fatherName: "Nagthane Navnath Appa",
+                houseNumber: "167",
+                gender: "Male",
+                age: 23,
+                voterIdNo: "SWH8362824",
+                otherNumber: "97/191/781",
+                colonyName: "Mahatma Fule Road Purna",
+            },
+              {
+                name: "Savale Prajwal Dipali",
+                fatherName: "Savale Dipali",
+                houseNumber: "167",
+                gender: "Male",
+                age: 23,
+                voterIdNo: "SWH7725435",
+                otherNumber: "97/191/782",
+                colonyName: "Mahatma Fule Road Purna",
+            },
+              {
+                name: "Ambegave Gangadhar basvantarao ambegave",
+                fatherName: "Ambegave basvant",
+                houseNumber: "785",
+                gender: "Male",
+                age: 57,
+                voterIdNo: "SWH8119265",
+                otherNumber: "97/191/825",
+                colonyName: "Mahatma Fule Road Purna",
+            },
+              {
+                name: "Kadam dnyaneshwar kishanrao",
+                fatherName: "kadam kishanrao",
+                houseNumber: "2576",
+                gender: "Male",
+                age: 50,
+                voterIdNo: "SWH8119265",
+                otherNumber: "97/191/825",
+                colonyName: "Mahatma Fule Road Purna",
+            }
+
+
         ];
 
         let filteredVoters = [...votersData];
         const itemsPerPage = 5000; // Show all data
 
         // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('DOM loaded, initializing...');
             console.log('Voters data:', votersData);
             populateColonyFilter();
@@ -692,9 +808,9 @@
             const colonyFilter = document.getElementById('colonyFilter');
             const colonies = [...new Set([
                 ...votersData.map(voter => voter.colonyName),
-                ...votersData.map(voter => voter.colonyNameEnglish).filter(name => name)
+
             ])];
-            
+
             colonies.forEach(colony => {
                 const option = document.createElement('option');
                 option.value = colony;
@@ -708,7 +824,7 @@
             const totalVoters = filteredVoters.length;
             const totalMales = filteredVoters.filter(voter => voter.gender === 'Male').length;
             const totalFemales = filteredVoters.filter(voter => voter.gender === 'Female').length;
-            
+
             const ages = filteredVoters.map(voter => voter.age);
             const averageAge = ages.length > 0 ? Math.round(ages.reduce((a, b) => a + b, 0) / ages.length) : 0;
 
@@ -724,19 +840,19 @@
             const voterList = document.getElementById('voterList');
             const noResults = document.getElementById('noResults');
             const filterResults = document.getElementById('filterResults');
-            
+
             if (filteredVoters.length === 0) {
                 voterList.innerHTML = '';
                 noResults.style.display = 'block';
                 filterResults.textContent = 'कोणतेही मतदार सापडले नाहीत';
                 return;
             }
-            
+
             noResults.style.display = 'none';
-            
+
             // Update filter results text
             filterResults.textContent = `एकूण ${filteredVoters.length} मतदार दाखवत आहे`;
-            
+
             // Generate voter list HTML - show all voters
             voterList.innerHTML = filteredVoters.map(voter => `
                 <div class="voter-item">
@@ -797,24 +913,23 @@
             filteredVoters = votersData.filter(voter => {
                 // Direct search in all fields - works with any language including English fields
                 let matchesSearch = true;
-                
+
                 if (searchTerm) {
-                    matchesSearch = 
+                    matchesSearch =
                         voter.name.toLowerCase().includes(searchTerm) ||
-                        (voter.nameEnglish && voter.nameEnglish.toLowerCase().includes(searchTerm)) ||
+
                         voter.fatherName.toLowerCase().includes(searchTerm) ||
-                        (voter.fatherNameEnglish && voter.fatherNameEnglish.toLowerCase().includes(searchTerm)) ||
+
                         voter.voterIdNo.toLowerCase().includes(searchTerm) ||
                         voter.houseNumber.toLowerCase().includes(searchTerm) ||
                         voter.otherNumber.toLowerCase().includes(searchTerm) ||
                         voter.colonyName.toLowerCase().includes(searchTerm) ||
-                        (voter.colonyNameEnglish && voter.colonyNameEnglish.toLowerCase().includes(searchTerm)) ||
+
                         voter.gender.toLowerCase().includes(searchTerm);
                 }
-                
+
                 const matchesGender = !genderFilter || voter.gender === genderFilter;
-                const matchesColony = !colonyFilter || voter.colonyName === colonyFilter || 
-                                    (voter.colonyNameEnglish && voter.colonyNameEnglish === colonyFilter);
+                const matchesColony = !colonyFilter || voter.colonyName === colonyFilter;
                 const matchesAge = voter.age >= minAge && voter.age <= maxAge;
 
                 return matchesSearch && matchesGender && matchesColony && matchesAge;
@@ -831,7 +946,7 @@
             document.getElementById('colonyFilter').value = '';
             document.getElementById('minAge').value = '';
             document.getElementById('maxAge').value = '';
-            
+
             filteredVoters = [...votersData];
             updateStatistics();
             displayVoters();
@@ -847,4 +962,5 @@
         }
     </script>
 </body>
+
 </html>
