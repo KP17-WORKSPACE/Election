@@ -24221,6 +24221,11 @@
 
         ];
 
+
+        votersData.sort((a, b) =>
+    a.name.localeCompare(b.name, 'en', { sensitivity: 'base' })
+);
+
         let filteredVoters = [...votersData];
         const itemsPerPage = 5000; // Show all data
         const MAX_RENDER = 2500; // Maximum number of voters to render at once to avoid UI freeze
